@@ -1,31 +1,31 @@
 const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const path = require("path");
+require("dotenv").config();
+
+const friendRoutes = require("./routes/friendRoutes"); // Import friend routes
+//const transactionRoutes = require("./routes/transactionRoutes"); // Import transaction routes
 
 const app = express();
-const mongoose = require("mongoose");
-const path = require("path");
-require('dotenv').config();
 
-// Database Connection
+//  Database Connection
 const URL = process.env.DATABASE_URL;
-mongoose.connect(URL , {
-   
-})
-    .then(() => console.log("Connected to MongoDB"))
-    .catch((err) => console.log("Database Connection Error:", err));
+mongoose
+  .connect(URL)
+  .then(() => console.log(" Connected to MongoDB"))
+  .catch((err) => console.log(" Database Connection Error:", err));
 
+//  Middlewares
+app.use(express.json()); // Parse JSON body
+app.use(cors()); // Enable CORS
 
-// middlewares 
+//  Routes
+app.use("/friends", friendRoutes); // Friend-related routes
+//app.use("/transactions", transactionRoutes); // Transaction-related routes
 
-
-
-
-// routes 
-
-
-
-const port = process.env.PORT || 8080;  
+//  Server Start
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+  console.log(` Server is running on http://localhost:${port}`);
 });
-
-

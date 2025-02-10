@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 
 const friendSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, // Belongs to a user
@@ -7,4 +7,4 @@ const friendSchema = new mongoose.Schema({
   transactions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Transaction' }]
 }, { timestamps: true });
 
-export default mongoose.model('Friend', friendSchema);
+module.exports =  mongoose.model('Friend', friendSchema);
