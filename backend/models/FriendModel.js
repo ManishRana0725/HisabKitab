@@ -8,3 +8,4 @@ const friendSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 module.exports =  mongoose.model('Friend', friendSchema);
+  

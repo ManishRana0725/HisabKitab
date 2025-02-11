@@ -1,21 +1,36 @@
-// import QRCode from 'qrcode';
-const QRCode = require('qrcode');
-const path = require('path');
-const fs = require('fs');
-// import path from 'path';
-// import fs from 'fs';
+const QRCode = require("qrcode");
+const path = require("path");
+const fs = require("fs");
 
 // Generate and save QR Code as an image
-const generateQRCode = async (friendId) => {
+const generateQRCode = async (friendId, friendName, eventName) => {
   try {
-    const qrData = `https://yourapp.com/pay/${friendId}`;
-    const qrImagePath = path.join('public/qrcodes', `${friendId}.png`);
+    // Format event and friend name for URL & file naming
+    const formattedEventName = eventName.toLowerCase().replace(/\s+/g, "-"); // Convert spaces to hyphens
+    const formattedFriendName = friendName.toLowerCase().replace(/\s+/g, "-");
 
+    // Construct the final URL
+    const qrData = `https://yourapp.com/pay/${formattedEventName}/${formattedFriendName}/${friendId}`;
+
+    // Ensure directory exists
+    const qrDir = path.join(__dirname, "../public/qrcodes");
+    if (!fs.existsSync(qrDir)) {
+      fs.mkdirSync(qrDir, { recursive: true });
+    }
+
+    // Define file name based on friend name & event
+    const qrImagePath = path.join(qrDir, `${formattedFriendName}-${formattedEventName}.png`);
+
+    // Generate QR Code and save to file
     await QRCode.toFile(qrImagePath, qrData, { width: 300 });
 
-    return `/qrcodes/${friendId}.png`; // Return image URL path
+    console.log("QR Code generated:", qrData); // Debugging log
+
+    return `/qrcodes/${formattedFriendName}-${formattedEventName}.png`; // Return image URL path
   } catch (error) {
-    throw new Error('QR code generation failed');
+    console.error("QR Code Generation Error:", error);
+    throw new Error("QR code generation failed");
   }
 };
+
 module.exports = generateQRCode;
