@@ -5,7 +5,7 @@ const path = require("path");
 require("dotenv").config();
 
 const friendRoutes = require("./routes/friendRoutes"); // Import friend routes
-//const transactionRoutes = require("./routes/transactionRoutes"); // Import transaction routes
+const transactionRoutes = require("./routes/transactionRoutes"); // Import transaction routes
 const userRoutes = require("./routes/userRoutes");
 
 
@@ -25,7 +25,7 @@ app.use(cors()); // Enable CORS
 //  Routes
 app.use("/friends", friendRoutes); // Friend-related routes
 app.use("/users", userRoutes); // userroutes
-//app.use("/transactions", transactionRoutes); // Transaction-related routes
+app.use("/transactions", transactionRoutes); // Transaction-related routes
 
 //  Server Start
 const port = process.env.PORT || 8080;

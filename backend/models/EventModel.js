@@ -7,4 +7,4 @@ const eventSchema = new mongoose.Schema({
   transactions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Transaction' }] // Payments for this event
 }, { timestamps: true });
 
-export default mongoose.model('Event', eventSchema);
+module.exports = mongoose.model('Event', eventSchema);
