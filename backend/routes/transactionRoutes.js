@@ -11,8 +11,6 @@ router.get("/:friendId", TransactionController.getTransactions);
 
 
 
-// // Get all transactions for a specific event by name
-// router.get("/transactions/event/:eventName", TransactionController.getEventTransactions);
 
 
 

@@ -46,6 +46,7 @@ const TransactionController = {
   
         // 🔹 Add the transaction to the event's transaction array
         event.transactions.push(transaction._id);
+        friend.transactions.push(transaction._id); // it will add this id to the friend also
         await event.save();
   
         res.status(201).json({
@@ -91,31 +92,5 @@ module.exports = TransactionController;
 
 
 
-
-
-
-
-//   // Get all transactions for a specific event by name
-//   getEventTransactions: async (req, res) => {
-//     try {
-//       const { eventName } = req.params;
-
-//       // Find event & populate transactions
-//       const event = await Event.findOne({ name: eventName }).populate({
-//         path: "transactions",
-//         populate: { path: "friend", select: "name" } // Also get friend names
-//       });
-
-//       if (!event) {
-//         return res.status(404).json({ message: "Event not found" });
-//       }
-
-//       res.status(200).json({ event });
-
-//     } catch (error) {
-//       console.error("Error fetching event transactions:", error);
-//       res.status(500).json({ message: "Internal Server Error" });
-//     }
-//   }
 
 

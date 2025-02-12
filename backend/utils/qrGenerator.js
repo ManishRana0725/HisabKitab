@@ -26,7 +26,7 @@ const generateQRCode = async (friendId, friendName, eventName) => {
 
     console.log("QR Code generated:", qrData); // Debugging log
 
-    return `/qrcodes/${formattedFriendName}-${formattedEventName}.png`; // Return image URL path
+    return `/${formattedFriendName}-${formattedEventName}`; // Return image URL path
   } catch (error) {
     console.error("QR Code Generation Error:", error);
     throw new Error("QR code generation failed");
