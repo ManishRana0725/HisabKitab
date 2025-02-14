@@ -10,8 +10,8 @@ const generateQRCode = async (friendId, friendName, eventName) => {
     const formattedFriendName = friendName.toLowerCase().replace(/\s+/g, "-");
 
     // Construct the final URL
-    const qrData = `https://yourapp.com/pay/${formattedEventName}/${formattedFriendName}/${friendId}`;
-
+    const qrData = `https://localhost:8080/pay/${formattedEventName}/${formattedFriendName}/${friendId}`;
+    
     // Ensure directory exists
     const qrDir = path.join(__dirname, "../public/qrcodes");
     if (!fs.existsSync(qrDir)) {

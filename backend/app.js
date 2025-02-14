@@ -29,6 +29,7 @@ app.use(cors()); // Enable CORS
 app.use("/friends", friendRoutes); // Friend-related routes
 app.use("/users", userRoutes); // userroutes
 app.use("/transactions", transactionRoutes); // Transaction-related routes
+//app.use("/pay" , "i am payment routes") // payment routes
 // Use Event Routes
 app.use("/event", eventRoutes);
 //  Server Start
