@@ -1,43 +1,51 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Login.css";
+import "./Signup.css";
 
-const Login = () => {
+const Signup = () => {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     setError(""); // Reset error message
 
     try {
-      const response = await axios.post("http://localhost:8080/users/login", {
+      const response = await axios.post("http://localhost:5000/users/register", {
+        name,
         email,
         password,
       });
 
-      // Assuming your backend sends back a token
-      const { token } = response.data;
+      // Assuming the backend sends a success message or token
+      console.log("Signup successful:", response.data);
 
-      // Store token in localStorage
-      localStorage.setItem("token", token);
-
-      // Redirect to home page
-      navigate("/");
+      // Redirect to login page
+      navigate("/login");
     } catch (err) {
-      setError(err.response?.data?.message || "Invalid email or password");
+      setError(err.response?.data?.message || "Signup failed. Try again.");
     }
   };
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleLogin} className="login-form">
-        <h2>Login</h2>
+    <div className="signup-container">
+      <form onSubmit={handleSignup} className="signup-form">
+        <h2>Signup</h2>
 
         {error && <p className="error-message">{error}</p>}
+
+        <label>Name</label>
+        <input
+          type="text"
+          placeholder="Enter your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
 
         <label>Email</label>
         <input
@@ -57,10 +65,10 @@ const Login = () => {
           required
         />
 
-        <button type="submit" className="login-btn">Login</button>
+        <button type="submit" className="signup-page-btn">Signup</button>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default Signup;

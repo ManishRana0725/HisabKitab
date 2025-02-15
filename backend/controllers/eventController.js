@@ -22,6 +22,21 @@ const EventController = {
       console.error("Error fetching event transactions:", error);
       res.status(500).json({ message: "Internal Server Error" });
     }
+  },
+  getAllEvents: async (req, res) => {
+    try {
+      const events = await Event.find({}, "name _id"); // Fetch only name & ID
+
+      if (events.length === 0) {
+        return res.status(404).json({ message: "No events found" });
+      }
+
+      res.status(200).json({ events });
+
+    } catch (error) {
+      console.error("Error fetching all events:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
   }
 };
 

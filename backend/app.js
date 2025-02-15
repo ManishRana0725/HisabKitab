@@ -30,8 +30,9 @@ app.use("/friends", friendRoutes); // Friend-related routes
 app.use("/users", userRoutes); // userroutes
 app.use("/transactions", transactionRoutes); // Transaction-related routes
 //app.use("/pay" , "i am payment routes") // payment routes
-// Use Event Routes
-app.use("/event", eventRoutes);
+app.use("/event", eventRoutes);// Use Event Routes
+
+
 //  Server Start
 const port = process.env.PORT || 8080;
 app.listen(port, () => {
