@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./Allevent.css";
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -14,9 +16,9 @@ const Events = () => {
         return response.json();
       })
       .then(data => {
-        console.log("Fetched events:", data); // Debugging
-        setEvents(data.events || []); // ✅ Ensure it's always an array
-        setError(null); // Clear any previous errors
+        console.log("Fetched events:", data);
+        setEvents(data.events || []);
+        setError(null);
       })
       .catch(error => {
         console.error("Error fetching events:", error);
@@ -28,20 +30,27 @@ const Events = () => {
   }, []);
 
   return (
-    <div>
+    <div className="events-container">
       <h2>All Events</h2>
 
-      {/* Show loading state */}
-      {loading && <p>Loading events...</p>}
+      {/* New Event Button */}
+      <div className="new-event-container">
+        <Link to="/create-event" className="new-event-btn">
+          New Event
+        </Link>
+      </div>
 
-      {/* Show error message if fetching fails */}
+      {loading && <p>Loading events...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {/* Show events if fetched successfully */}
       {!loading && !error && events.length > 0 ? (
-        events.map(event => (
-          <div key={event._id}>{event.name}</div>
-        ))
+        <div className="event-list">
+          {events.map(event => (
+            <Link to={`/event/${event._id}`} key={event._id} className="event-card" >
+              {event.name}
+            </Link>
+          ))}
+        </div>
       ) : (
         !loading && !error && <p>No events found</p>
       )}

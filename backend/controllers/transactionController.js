@@ -46,9 +46,12 @@ const TransactionController = {
   
         // 🔹 Add the transaction to the event's transaction array
         event.transactions.push(transaction._id);
-        friend.transactions.push(transaction._id); // it will add this id to the friend also
         await event.save();
-  
+        
+         // 🔹 Add the transaction to the friend's transaction array
+        friend.transactions.push(transaction._id);
+        await friend.save();
+        
         res.status(201).json({
           message: "Transaction recorded successfully",
           transaction,

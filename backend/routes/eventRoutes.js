@@ -6,6 +6,6 @@ const router = express.Router();
  // fro all event name 
 router.get("/all" , EventController.getAllEvents)
 // Fetch transactions for an event (by event name)
-router.get("/:eventName", EventController.getEventTransactions);
+router.get("/:eventId", EventController.getEventTransactions);
 
 module.exports = router;
