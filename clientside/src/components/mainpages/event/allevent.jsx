@@ -1,33 +1,37 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Allevent.css";
-
+import axios from "axios";
 const Events = () => {
   const [events, setEvents] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8080/event/all")
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+        // Replace fetch with axios
+        const token = localStorage.getItem("token"); // Retrieve token from localStorage
+        if (!token) {
+            throw new Error("No authentication token found");
         }
-        return response.json();
+        console.log("token of the login user :",token)
+      axios
+      .get("http://localhost:8080/event/all" , {
+        headers: { Authorization: `Bearer ${token}` }}
+      ) // Using axios to make the GET request
+      .then((response) => {
+        console.log("Fetched events:", response.data); // The data will be in response.data
+        setEvents(response.data.events || []); // Assuming response.data.events contains the events
+        setError(null); // Reset error if the request was successful
       })
-      .then(data => {
-        console.log("Fetched events:", data);
-        setEvents(data.events || []);
-        setError(null);
-      })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching events:", error);
-        setError("Failed to fetch events. Please try again later.");
+        setError("Failed to fetch events. Please try again later."); // Handle error
       })
       .finally(() => {
-        setLoading(false);
+        setLoading(false); // Set loading to false once the request is done
       });
   }, []);
+
 
   return (
     <div className="events-container">

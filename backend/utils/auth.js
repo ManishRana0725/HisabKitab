@@ -1,10 +1,13 @@
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-
 const JWT_SECRET = process.env.JWT_SECRET;
 
 // Generate JWT token (expires in 24 hours)
 const generateToken = (userId) => {
+  if (!userId || typeof userId !== "string") {
+    throw new Error("Invalid userId passed to generateToken");  // ✅ Debugging safeguard
+  }
+  
   return jwt.sign({ userId }, JWT_SECRET, { expiresIn: "24h" });
 };
 

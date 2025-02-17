@@ -1,11 +1,10 @@
 const express = require("express");
 const UserController = require("../controllers/userController");
-const { verifyToken } = require("../utils/auth");
-
+const { verifyToken  } = require("../utils/auth");
 const router = express.Router();
 
 // Register User & Get Token
-router.post("/register", UserController.registerUser);
+router.post("/register" , UserController.registerUser);
 
 // Login User & Get Token
 router.post("/login", UserController.loginUser);    

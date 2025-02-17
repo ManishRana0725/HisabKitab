@@ -19,14 +19,16 @@ const Login = () => {
         password,
       });
 
-      // Assuming your backend sends back a token
-      const { token } = response.data;
+      // Assuming your backend sends back a token and userId
+      // Extract the token and userId correctly
+      const { token, user } = response.data;
+      const userId = user._id;  // Accessing userId from the user object
 
-      // Store token in localStorage
+      // Store token and userId in localStorage
       localStorage.setItem("token", token);
-
+      localStorage.setItem("userId", userId);
       // Redirect to home page
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       setError(err.response?.data?.message || "Invalid email or password");
     }

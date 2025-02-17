@@ -22,3 +22,12 @@ export default function Pages() {
         // new friend add karna hai
     );
 }
+
+// const token = localStorage.getItem("token"); // Retrieve token from localStorage
+// if (!token) {
+//     throw new Error("No authentication token found");
+// }
+// console.log("token of the login user :",token)
+// const res = await axios.get(`http://localhost:8080/api_market/category/${id}/api/all`, {
+//     headers: { Authorization: `Bearer ${token}` }
+// }); // ✅ Replace with actual API endpoint

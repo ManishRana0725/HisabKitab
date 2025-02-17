@@ -39,7 +39,7 @@ const UserController = {
       }
 
       // Generate token
-      const token = generateToken(user._id);
+      const token = generateToken(user._id.toString());
 
       res.json({ message: "Login successful", token, user });
     } catch (error) {
