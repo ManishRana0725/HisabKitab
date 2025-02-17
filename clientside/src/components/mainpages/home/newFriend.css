@@ -1,11 +1,11 @@
-.signup-container {
+.new-friend-container {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #f4f4f4;
   }
   
-  .signup-form {
+  form {
     background: white;
     padding: 2rem;
     border-radius: 8px;
@@ -14,20 +14,18 @@
     max-width: 400px;
     text-align: center;
   }
-  
-  .signup-form h2 {
+  .Newfriend-h2{
     margin-bottom: 1.5rem;
     color: #333;
   }
-  
-  .signup-form label {
+  .Newfriend-label {
     display: block;
     font-weight: bold;
     margin: 0.5rem 0 0.2rem;
     text-align: left;
   }
   
-  .signup-form input {
+  input {
     width: 100%;
     padding: 10px;
     margin-bottom: 1rem;
@@ -36,7 +34,7 @@
     font-size: 16px;
   }
   
-  .signup-page-btn {
+  .createfriend-button{
     width: 100%;
     padding: 10px;
     background-color: #f39c12;
@@ -48,13 +46,7 @@
     transition: 0.3s;
   }
   
-  .signup-btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .error-message {
-    color: red;
-    font-size: 14px;
-    margin-bottom: 1rem;
+  .createfriend-button:hover {
+    background-color: #f39c12;
   }
   
