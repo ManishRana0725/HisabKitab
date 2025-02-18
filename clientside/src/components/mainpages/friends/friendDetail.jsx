@@ -13,7 +13,14 @@ const FriendDetails = () => {
     const fetchFriendDetails = async () => {
       try {
         // 🔹 Fetch Friend Info (Now includes transactions)
-        const { data } = await axios.get(`http://localhost:8080/friends/${id}`);
+        const token = localStorage.getItem("token"); // Retrieve token from localStorage
+        if (!token) {
+            throw new Error("No authentication token found");
+        }
+        console.log("token of the login user from freinds/:id:",token)
+        const { data } = await axios.get(`http://localhost:8080/friends/${id}`, {
+           headers: { Authorization: `Bearer ${token}` }
+        });
         setFriend(data.friend);
       } catch (error) {
         console.error("Error fetching friend details:", error);

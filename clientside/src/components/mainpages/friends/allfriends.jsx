@@ -11,7 +11,15 @@ const Friends = () => {
   useEffect(() => {
     const fetchFriends = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/friends/all");
+        
+        const token = localStorage.getItem("token"); // Retrieve token from localStorage
+        if (!token) {
+            throw new Error("No authentication token found");
+        }
+        console.log("token of the login user form /friends/all :",token)
+        const response = await axios.get("http://localhost:8080/friends/all" , {
+            headers: { Authorization: `Bearer ${token}` }
+        });
         setFriends(response.data.friends || []);
       } catch (error) {
         console.error("Error fetching friends:", error);

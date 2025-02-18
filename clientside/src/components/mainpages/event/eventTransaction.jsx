@@ -13,7 +13,14 @@ const EventTransactions = () => {
   useEffect(() => {
     const fetchTransactions = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/event/${id}`);
+        const token = localStorage.getItem("token"); // Retrieve token from localStorage
+        if (!token) {
+            throw new Error("No authentication token found");
+        }
+        console.log("token of the login user from /event/:id :",token)
+        const response = await axios.get(`http://localhost:8080/event/${id}` , {
+              headers: { Authorization: `Bearer ${token}` }
+           });
         if (response.data.event) {
           setEventName(response.data.event.name); // Get event name
           setTransactions(response.data.event.transactions || []);

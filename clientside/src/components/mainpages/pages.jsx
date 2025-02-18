@@ -19,7 +19,7 @@ export default function Pages() {
             <Route path="/friend/:id" element={<FriendDetail/>}/>
             <Route path="/new-friend" element={<NewFriend/>} />
         </Routes>
-        // new friend add karna hai
+        // har ek api request pe checkToken file pass karo aur forntend se header authication pass karo
     );
 }
 
