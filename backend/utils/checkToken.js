@@ -12,7 +12,7 @@ const checkToken = async (req, res, next) => {
         // Verify the token
         const verified = jwt.verify(token, process.env.JWT_SECRET);
         if (!verified) return res.status(401).json({ msg: 'Token verification failed, access denied' });
-    
+        
         // const user = await Users.findById(verified.id); // Validate token ID matches a user
     
         // if (!user) return res.status(404).json({ msg: 'User not found' });

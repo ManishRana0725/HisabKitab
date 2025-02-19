@@ -6,6 +6,7 @@ import Allevent from "./event/allevent.jsx";
 import EventTransaction from "./event/eventTransaction.jsx";
 import Allfriends from "./friends/allfriends.jsx"
 import FriendDetail from "./friends/friendDetail.jsx"
+import PaytoFriend from "./friends/payTofriend.jsx"
 import NewFriend from "./home/newFriend.jsx"
 export default function Pages() {
     return (
@@ -17,6 +18,7 @@ export default function Pages() {
             <Route path="/event/:id" element={<EventTransaction/>}/>
             <Route path="/allfriends" element={<Allfriends/>}/>
             <Route path="/friend/:id" element={<FriendDetail/>}/>
+            <Route path="/friend/:id/pay" element={<PaytoFriend/>}/>
             <Route path="/new-friend" element={<NewFriend/>} />
         </Routes>
         // har ek api request pe checkToken file pass karo aur forntend se header authication pass karo
