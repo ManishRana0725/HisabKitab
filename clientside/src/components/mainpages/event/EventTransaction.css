@@ -1,7 +1,11 @@
 .transactions-container {
   max-width: 800px;
   margin: auto;
-  padding: 20px;
+  
+  text-align: center;
+  padding: 80px 40px 20px; /* Added padding to prevent overlap with fixed header */
+  background-color: #f9f9f9;
+  min-height: 100vh;
 }
 
 .transactions-list {

@@ -2,8 +2,9 @@ footer {
     background-color: rgba(217, 165, 32, 0.9);
     color: white;
     padding: 16px 0;
-    width: 100vw; /* Full screen width */
+    width: 100vw; /* Full width */
     text-align: center;
+    margin-top: auto; /* Push footer to the bottom */
   }
   
   /* Container to center everything */
