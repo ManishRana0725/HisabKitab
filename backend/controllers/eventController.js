@@ -44,7 +44,33 @@ const EventController = {
       console.error("Error fetching all events:", error);
       res.status(500).json({ message: "Internal Server Error" });
     }
+  },
+  createNewEvent: async(req , res) =>{
+    try {
+            const { eventName   , eventdate , userId} = req.body;  // Extract event name from request body
+
+            // const userId = localStorage.getItem("userId"); // Get userId from localStorage
+            // 🔹 Find or create the event
+            let event = await Event.findOne({ name: eventName, user: userId });
+            if (event) {
+              return res.status(409).json({ message: `Event '${eventName}' already exists` });
+            }
+            if (!event) {
+                event = new Event({
+                    name: eventName,
+                    user: userId,
+                    date: eventdate || new Date(),
+                    transactions: []
+              });
+              await event.save();
+            }
+        return res.status(201).json({ message: "Event created successfully", event: event });
+      } catch (error) {
+          console.error("Error creating event:", error);
+          return res.status(500).json({ message: "Internal server error" });
+      }
   }
+  
 };
 
 module.exports = EventController;

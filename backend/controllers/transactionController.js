@@ -66,13 +66,13 @@ const TransactionController = {
   // Record a transaction to pay frined (when data is enterd to and clicked form /friend/:id/pay (frontend))
   recordTransactionfriend: async (req, res) => {
       try {
-          const { friendId, eventName, amount } = req.body; // Get data from request
+          const { friendId, amount  , eventName} = req.body; // Get data from request
 
           // Validate input
           if (!friendId || !eventName || !amount) {
             return res.status(400).json({ message: "Missing required fields" });
           }
-    
+          
           // Check if the friend exists
           const friend = await Friend.findById(friendId);
           if (!friend) {
@@ -103,13 +103,23 @@ const TransactionController = {
           });
     
           await transaction.save();
-    
+          
           // 🔹 Add the transaction to the event's transaction array
           event.transactions.push(transaction._id);
           await event.save();
           
-           // 🔹 Add the transaction to the friend's transaction array
+          // 🔹 Add the transaction to the friend's transaction array
           friend.transactions.push(transaction._id);
+          // Check if the event already exists in the friend's events list
+          const existingEvent = friend.events.find(e => e.event.toString() === event._id.toString());
+
+          if (!existingEvent) {
+            // If event does not exist in the friend's events array, add it
+            friend.events.push({ event: event._id, eventName });
+          }
+
+await friend.save();
+
           await friend.save();
           
           res.status(201).json({

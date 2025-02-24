@@ -4,7 +4,7 @@ footer {
     padding: 16px 0;
     width: 100vw; /* Full width */
     text-align: center;
-    margin-top: auto; /* Push footer to the bottom */
+    margin-top: 100vh; /* Push footer to the bottom */
   }
   
   /* Container to center everything */
@@ -34,7 +34,9 @@ footer {
   .footer-socials i:hover {
     color: #4299e1;
   }
-  
+  .footer-socials .fa-facebook:hover {
+    color: #0077b5;
+  } 
   .footer-socials .fa-instagram:hover {
     color: #e1306c;
   }
@@ -55,3 +57,43 @@ footer {
     font-size: 14px;
   }
   
+
+
+
+
+/* .f-info-links a{
+    text-decoration: none;
+    color: #222222;
+}
+
+.f-info-links a:hover{
+    text-decoration: underline;
+    
+}
+.f-info-links ,
+.f-info-socials,
+.f-info-brand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+}
+
+
+.f-info-socials i{
+    margin-right: 1.4rem;
+    font-size: 1.3rem;
+}
+
+
+.fotter-info {
+    text-align: center;
+    height: 8rem;
+    display: flex;
+    background-color: #ebebeb;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: space-evenly;
+
+} */

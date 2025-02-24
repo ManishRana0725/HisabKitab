@@ -28,7 +28,7 @@ const Login = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("userId", userId);
       // Redirect to home page
-      navigate("/home");
+      navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || "Invalid email or password");
     }

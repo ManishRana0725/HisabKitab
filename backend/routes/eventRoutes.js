@@ -8,4 +8,5 @@ router.get("/all" ,Token , EventController.getAllEvents)
 // Fetch transactions for an event (by event name)
 router.get("/:eventId",Token , EventController.getEventTransactions);
 
+router.post("/createEvent" , Token , EventController.createNewEvent);
 module.exports = router;
