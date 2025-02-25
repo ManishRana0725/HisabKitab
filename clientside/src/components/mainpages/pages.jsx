@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import Login from "./login/login.jsx"
 import Signup from "./signup/signup.jsx";
 import Home from "./home/home.jsx"
+import PayPage from "./paypage.jsx";
 import Allevent from "./event/allevent.jsx";
 import EventTransaction from "./event/eventTransaction.jsx";
 import CreateEvent from "./event/createEvent.jsx";
@@ -22,6 +23,7 @@ export default function Pages() {
             <Route path="/friend/:id" element={<FriendDetail/>}/>
             <Route path="/friend/:id/pay" element={<PaytoFriend/>}/>
             <Route path="/new-friend" element={<NewFriend/>} />
+            <Route path="/pay/:friendId" element={<PayPage />} /> 
         </Routes>
         // har ek api request pe checkToken file pass karo aur forntend se header authication pass karo
     );

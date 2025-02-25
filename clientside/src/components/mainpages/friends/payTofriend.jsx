@@ -34,7 +34,7 @@ const PaymentPage = () => {
       });
 
       alert("Payment successful!");
-      navigate(`/friend/:id`); // Redirect back to friend details
+      navigate(`/friend/:id`); // Redirect back to friend details   
     } catch (error) {
       console.error("Payment error:", error);
       setError("Payment failed. Please try again.");

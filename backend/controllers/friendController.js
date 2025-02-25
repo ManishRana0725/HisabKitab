@@ -42,7 +42,8 @@ const FriendController = {
         
         // 🔹 Generate QR Code for this friend and event
         const qrCodeImage = await generateQRCode(friend._id, friend.name, event.name);
-        const qrCodePdf = await getpdf(qrCodeImage);
+        const qrCodePdf = await generateQrPdf(qrCodeImage.replace('/qrcodes/', '').replace('.png', ''));
+
         res.status(201).json({ friend, qrCodePdf });
 
     } catch (error) {
@@ -102,7 +103,7 @@ const FriendController = {
   getFriendById: async (req, res) => {
     try {
         const { id } = req.params;
-
+        
         // 🔹 Find the friend by ID & populate related fields
         const friend = await Friend.findById(id)
             .populate({

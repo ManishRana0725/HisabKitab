@@ -108,12 +108,17 @@
   .cta .signup-btn:hover {
     background-color: rgb(230, 164, 0) ;/* Darker gold on hover  */
   }
-  .profile-image {
+  .profile-icon {
     width: 40px;
     height: 40px;
+    color:  rgb(217, 165, 32);
     border-radius: 50%;
     object-fit: cover;
     cursor: pointer;
+  }
+  .profile-icon:hover{
+    background-color: rgba(0, 0, 0, 0.11);
+    transition: background-color 0.4s ease, transform 0.4s ease
   }
   
   /* Responsive */

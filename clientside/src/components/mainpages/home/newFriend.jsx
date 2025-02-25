@@ -33,7 +33,7 @@ const NewFriend = () => {
         headers: { Authorization: `Bearer ${token}` }, // ✅ Send token in headers
       });
       console.log("Friend created:", response.data);
-      navigate("/home"); 
+      navigate("/"); 
     } catch (error) {
       console.error("Error creating friend:", error);
     }

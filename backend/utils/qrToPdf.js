@@ -4,8 +4,8 @@ const path = require("path");
 
 // Convert QR code image to PDF
 const generateQrPdf = async (friendId) => {
-  const qrImagePath = path.join('public/qrcodes', `${friendId}.png`);
-  const pdfPath = path.join('public/qrcodes', `${friendId}.pdf`);
+  const qrImagePath = path.join(__dirname, "../public/qrcodes", `${friendId}.png`); // Fix path
+  const pdfPath = qrImagePath.replace(".png", ".pdf");
 
   return new Promise((resolve, reject) => {
     const doc = new PDFDocument();
@@ -13,6 +13,13 @@ const generateQrPdf = async (friendId) => {
 
     doc.pipe(stream);
     doc.text(`QR Code for Friend ID: ${friendId}`, { align: 'center' });
+
+    // Check if QR image exists before trying to add it
+    if (!fs.existsSync(qrImagePath)) {
+      console.error("❌ QR Image not found at:", qrImagePath);
+      return reject(new Error("QR Image file not found"));
+    }
+
     doc.image(qrImagePath, { fit: [250, 250], align: 'center' });
     doc.end();
 
@@ -20,5 +27,6 @@ const generateQrPdf = async (friendId) => {
     stream.on('error', reject);
   });
 };
+
 
 module.exports = generateQrPdf;

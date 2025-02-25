@@ -118,7 +118,7 @@ const TransactionController = {
             friend.events.push({ event: event._id, eventName });
           }
 
-await friend.save();
+
 
           await friend.save();
           
