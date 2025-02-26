@@ -17,7 +17,7 @@ const app = express();
 //  Database Connection
 const URL = process.env.DATABASE_URL;
 mongoose
-  .connect(URL)
+  .connect(URL , {serverSelectionTimeoutMS: 5000, })// Increase timeout
   .then(() => console.log(" Connected to MongoDB"))
   .catch((err) => console.log(" Database Connection Error:", err));
 

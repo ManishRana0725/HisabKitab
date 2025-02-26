@@ -3,13 +3,23 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./paypage.css"; // Import CSS
 const PayPage = () => {
-  const { friendId } = useParams();
+  const restoreOriginalFormat = (formattedName) => {
+    return formattedName
+      .split("-") // Split at hyphens
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize first letter
+      .join(" "); // Join back with spaces
+  };
+  const {  formattedEventName, formattedFriendName, friendId  } = useParams();
+  const originalEventName = restoreOriginalFormat(formattedEventName);
+  const originalFriendName = restoreOriginalFormat(formattedFriendName);
   const [friend, setFriend] = useState(null);
   const [amount, setAmount] = useState("");
   const [loading, setLoading] = useState(true);
 
   // Fetch friend details
+
   useEffect(() => {
+
     axios
       .get(`/friends/${friendId}`)
       .then((res) => {
@@ -46,8 +56,8 @@ const PayPage = () => {
         <p>Loading...</p>
       ) : friend ? (
         <div>
-          <h2>Pay {friend.name}</h2>
-          <p>Event: {friend.eventName}</p>
+          <h2>Pay {originalFriendName}</h2>
+          <p>Event: {originalEventName}</p>
           <input
             type="number"
             placeholder="Enter amount"

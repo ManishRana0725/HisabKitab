@@ -23,7 +23,7 @@ export default function Pages() {
             <Route path="/friend/:id" element={<FriendDetail/>}/>
             <Route path="/friend/:id/pay" element={<PaytoFriend/>}/>
             <Route path="/new-friend" element={<NewFriend/>} />
-            <Route path="/pay/:friendId" element={<PayPage />} /> 
+            <Route path="/pay/:formattedEventName/:formattedFriendName/:friendId" element={<PayPage />} /> 
         </Routes>
         // har ek api request pe checkToken file pass karo aur forntend se header authication pass karo
     );

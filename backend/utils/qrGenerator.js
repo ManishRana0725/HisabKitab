@@ -38,7 +38,7 @@ const QRCode = require("qrcode");
 const path = require("path");
 const fs = require("fs");
 
-const BASE_URL = "https://localhost:5173"; // Change this to your real domain
+const BASE_URL = "http://localhost:5173"; // Change this to your real domain
 
 // Generate and save QR Code as an image
 const generateQRCode = async (friendId, friendName, eventName) => {

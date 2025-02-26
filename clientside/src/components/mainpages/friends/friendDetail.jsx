@@ -86,6 +86,8 @@
 // };
 
 // export default FriendDetails;
+
+
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -101,6 +103,7 @@ const FriendDetails = () => {
   useEffect(() => {
     const fetchFriendDetails = async () => {
       try {
+
         const token = localStorage.getItem("token");
         if (!token) {
           throw new Error("No authentication token found");
