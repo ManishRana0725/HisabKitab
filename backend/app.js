@@ -34,7 +34,8 @@ app.use("/event", eventRoutes);// Use Event Routes
 
 
 //  Server Start 
-const port = process.env.PORT || 8080;
-app.listen(port, () => {
-  console.log(` Server is running on http://localhost:${port}`);
+const PORT = process.env.PORT || 10000; 
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
+
