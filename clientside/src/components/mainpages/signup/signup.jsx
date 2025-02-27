@@ -19,7 +19,8 @@ const Signup = () => {
         name,
         email,
         password,
-      });
+      } , { withCredentials: true } // Add this if using authentication
+      );
 
       // Assuming the backend sends a success message or token
       console.log("Signup successful:", response.data);
