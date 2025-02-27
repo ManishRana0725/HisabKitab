@@ -108,7 +108,7 @@ const FriendDetails = () => {
         if (!token) {
           throw new Error("No authentication token found");
         }
-        const { data } = await axios.get(`http://localhost:8080/friends/${id}`, {
+        const { data } = await axios.get(`https://hisabkitab-2.onrender.com/friends/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setFriend(data.friend);

@@ -25,7 +25,7 @@ const PaymentPage = () => {
         throw new Error("No authentication token found");
       }
       
-      const response = await axios.post("http://localhost:8080/transactions/payTofriend", {
+      const response = await axios.post("https://hisabkitab-2.onrender.com/transactions/payTofriend", {
         friendId: id,
         amount,
         eventName,

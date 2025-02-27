@@ -23,12 +23,15 @@ mongoose
 
 //  Middlewares
 app.use(express.json()); // Parse JSON body
-app.use(
-  cors({
-    origin: "http://localhost:5173", // Allow frontend
-    credentials: true, // Allow cookies/auth headers
-  })
-);
+const corsOptions = {
+  origin: "http://localhost:5173", // Allow frontend
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  credentials: true, // Allow cookies/auth headers
+  allowedHeaders: "Content-Type,Authorization",
+};
+
+app.use(cors(corsOptions)); // Apply CORS middleware
+app.options("*", cors(corsOptions)); // Handle preflight requests
 
 //  Routes
 app.use("/friends", friendRoutes); // Friend-related routes

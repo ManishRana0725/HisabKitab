@@ -15,7 +15,7 @@ const Events = () => {
         }
         console.log("token of the login user :",token)
       axios
-      .get("http://localhost:8080/event/all" , {
+      .get("https://hisabkitab-2.onrender.com/event/all" , {
         headers: { Authorization: `Bearer ${token}` }}
       ) // Using axios to make the GET request
       .then((response) => {

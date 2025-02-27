@@ -17,7 +17,7 @@ const Friends = () => {
             throw new Error("No authentication token found");
         }
         console.log("token of the login user form /friends/all :",token)
-        const response = await axios.get("http://localhost:8080/friends/all" , {
+        const response = await axios.get("https://hisabkitab-2.onrender.com/friends/all" , {
             headers: { Authorization: `Bearer ${token}` }
         });
         setFriends(response.data.friends || []);

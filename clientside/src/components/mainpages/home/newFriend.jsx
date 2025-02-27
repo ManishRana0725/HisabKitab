@@ -29,7 +29,7 @@ const NewFriend = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token"); // ✅ Get token from localStorage
-      const response = await axios.post("http://localhost:8080/friends", formData, {
+      const response = await axios.post("https://hisabkitab-2.onrender.com/friends", formData, {
         headers: { Authorization: `Bearer ${token}` }, // ✅ Send token in headers
       });
       console.log("Friend created:", response.data);

@@ -18,7 +18,7 @@ const EventTransactions = () => {
             throw new Error("No authentication token found");
         }
         console.log("token of the login user from /event/:id :",token)
-        const response = await axios.get(`http://localhost:8080/event/${id}` , {
+        const response = await axios.get(`https://hisabkitab-2.onrender.com/event/${id}` , {
               headers: { Authorization: `Bearer ${token}` }
            });
         if (response.data.event) {

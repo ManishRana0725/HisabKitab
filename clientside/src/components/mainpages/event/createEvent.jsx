@@ -21,7 +21,7 @@ const EventForm = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8080/event/createEvent", {
+      const response = await axios.post("https://hisabkitab-2.onrender.com/event/createEvent", {
         eventName: eventName,
         eventdate: eventDate,
         userId: userId

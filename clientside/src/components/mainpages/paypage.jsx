@@ -21,7 +21,7 @@ const PayPage = () => {
   useEffect(() => {
 
     axios
-      .get(`/friends/${friendId}`)
+      .get(`https://hisabkitab-2.onrender.com/friends/${friendId}`)
       .then((res) => {
         setFriend(res.data);
         setLoading(false);

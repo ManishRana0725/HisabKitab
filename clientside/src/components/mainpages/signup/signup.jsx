@@ -15,7 +15,7 @@ const Signup = () => {
     setError(""); // Reset error message
 
     try {
-      const response = await axios.post("http://localhost:5000/users/register", {
+      const response = await axios.post("https://hisabkitab-2.onrender.com/users/register", {
         name,
         email,
         password,
