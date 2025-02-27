@@ -40,6 +40,9 @@ const UserController = {
 
       // Generate token
       const token = generateToken(user._id.toString());
+      // ✅ Add CORS headers in response
+      res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+      res.header("Access-Control-Allow-Credentials", "true");
 
       res.json({ message: "Login successful", token, user });
     } catch (error) {

@@ -17,8 +17,8 @@ const Login = () => {
       const response = await axios.post("https://hisabkitab-2.onrender.com/users/login", {
         email,
         password,
-      });
-
+      } , { withCredentials: true } // This allows cookies and auth headers
+      );
       // Assuming your backend sends back a token and userId
       // Extract the token and userId correctly
       const { token, user } = response.data;
