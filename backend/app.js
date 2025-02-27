@@ -23,7 +23,12 @@ mongoose
 
 //  Middlewares
 app.use(express.json()); // Parse JSON body
-app.use(cors()); // Enable CORS
+app.use(
+  cors({
+    origin: "http://localhost:5173", // Allow frontend
+    credentials: true, // Allow cookies/auth headers
+  })
+);
 
 //  Routes
 app.use("/friends", friendRoutes); // Friend-related routes
