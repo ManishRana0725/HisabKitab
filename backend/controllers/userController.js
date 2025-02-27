@@ -13,9 +13,9 @@ const UserController = {
       if (existingUser) {
         return res.status(400).json({ message: "User already exists" });
       }
-
+      const hashedPassword = await bcrypt.hash(password, 10); // Hash password
       // Create user
-      const newUser = new User({ name, email, password });
+      const newUser = new User({ name , email , password: hashedPassword });
       await newUser.save();
 
       // Generate token
