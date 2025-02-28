@@ -144,21 +144,23 @@ const FriendDetails = () => {
           <p>Phone: {friend.phone}</p>
 
           <h4>Event-wise Transactions:</h4>
-          {friend.events.length > 0 ? (
-            <ul>
-              {friend.events.map((e) => (
-                <li key={e.eventId} className="event-card">
-                  <strong>Event:</strong> {e.eventName}
+          <div className="event-list"> 
+            {friend.events.length > 0 ? (
+              friend.events.map((e) => (
+                <div key={e.eventId} className="event-card">
+                  <strong>Event:</strong> {e.eventName || "Unnamed Event"}
                   <br />
                   <strong>Given:</strong> ₹{e.totalGiven}
                   <br />
                   <strong>Received:</strong> ₹{e.totalReceived}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>No events found.</p>
-          )}
+                </div>
+              ))
+            ) : (
+              <p>No events found.</p>
+            )}
+          </div>
+
+          
 
           {/* 🔹 Display Total Balance Across All Events */}
           <h3>Total Balance:</h3>
