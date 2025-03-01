@@ -8,29 +8,33 @@ const Events = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-        // Replace fetch with axios
-        const token = localStorage.getItem("token"); // Retrieve token from localStorage
-        if (!token) {
-            throw new Error("No authentication token found");
-        }
-        console.log("token of the login user :",token)
-      axios
-      .get("https://hisabkitab-2.onrender.com/event/all" , {
-        headers: { Authorization: `Bearer ${token}` }}
-      ) // Using axios to make the GET request
-      .then((response) => {
-        console.log("Fetched events:", response.data); // The data will be in response.data
-        setEvents(response.data.events || []); // Assuming response.data.events contains the events
-        setError(null); // Reset error if the request was successful
-      })
-      .catch((error) => {
-        console.error("Error fetching events:", error);
-        setError("Failed to fetch events. Please try again later."); // Handle error
-      })
-      .finally(() => {
-        setLoading(false); // Set loading to false once the request is done
-      });
+    const fetchEvents = async () => {
+      const token = localStorage.getItem("token"); // Retrieve token from localStorage
+      if (!token) {
+          throw new Error("No authentication token found");
+      }
+      console.log("token of the login user :",token)
+    axios
+    .get("https://hisabkitab-2.onrender.com/event/all" , {
+      headers: { Authorization: `Bearer ${token}` }}
+    ) // Using axios to make the GET request
+    .then((response) => {
+      console.log("Fetched events:", response.data); // The data will be in response.data
+      setEvents(response.data.events || []); // Assuming response.data.events contains the events
+      setError(null); // Reset error if the request was successful
+    })
+    .catch((error) => {
+      console.error("Error fetching events:", error);
+      setError("Failed to fetch events. Please try again later."); // Handle error
+    })
+    .finally(() => {
+      setLoading(false); // Set loading to false once the request is done
+    });
+  }
+    fetchEvents();
   }, []);
+        
+  
 
 
   return (
