@@ -3,6 +3,15 @@ node_modules/
 backend/node_modules/
 frontend/node_modules/
 
+clientside/aa
+clientside/.firebase
+clientside/aaa
+clientside/aaaa
+clientside/build
+clientside/.firebaserc
+clientside/firebase.json
+clientside/package.json
+clientside/dist
 # Ignore environment variables
 .env
 backend/.env
