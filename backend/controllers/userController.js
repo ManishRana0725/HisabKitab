@@ -6,28 +6,35 @@ const UserController = {
   // Register a new user and return token
   registerUser: async (req, res) => {
     try {
-      const { name, email, password } = req.body;
-      
-      // Check if user exists
-      const existingUser = await User.findOne({ email });
-      if (existingUser) {
-        return res.status(400).json({ message: "User already exists" });
+        const { name, email, password } = req.body;
+        
+        // Check if user exists
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(400).json({ message: "User already exists" });
+        }
+
+        console.log("Checked for existing user");
+
+        const hashedPassword = await bcrypt.hash(password, 10); // Hash password
+        
+        // Create user
+        const newUser = new User({ name, email, password: hashedPassword });
+        await newUser.save();
+
+        console.log("New user created:", newUser);  // ✅ Debugging
+
+        console.log("User ID before token generation:", newUser._id); // ✅ Debugging
+
+        // Ensure _id is a string before passing it to generateToken
+        const token = generateToken(newUser._id.toString());
+
+        res.status(201).json({ message: "User registered successfully", token, user: newUser });
+      } catch (error) {
+        console.error("Signup Error:", error); // Log the actual error
+        res.status(500).json({ message: `Error registering user: ${error.message}`, error: error.message });
       }
-      console.log("checked for user")
-      const hashedPassword = await bcrypt.hash(password, 10); // Hash password
-      // Create user
-      const newUser = new User({ name , email , password: hashedPassword });
-      await newUser.save();
-
-      // Generate token
-      const token = generateToken(newUser._id);
-
-      res.status(201).json({ message: "User registered successfully", token, user: newUser });
-    } catch (error) {
-      console.error("Signup Error:", error); // Log the actual error
-      res.status(500).json({ message: `Error registering user  error.message`, error:error.message });
-    }
-  },
+    },
 
   // User Login (Authenticate & return token)
   loginUser: async (req, res) => {
