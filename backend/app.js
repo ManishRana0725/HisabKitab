@@ -30,14 +30,20 @@ const allowedOrigins = [
 ];
 
 const corsOptions = {
-  origin: "*",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, origin);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // Allow cookies/auth headers
   allowedHeaders: "Content-Type,Authorization",
 };
 
 app.use(cors(corsOptions));
-// app.options("*", cors(corsOptions)); // Handle preflight requests
+app.options("*", cors(corsOptions)); // Handle preflight requests
 //  Routes
 app.use("/friends", friendRoutes); // Friend-related routes
 app.use("/users", userRoutes); // userroutes
