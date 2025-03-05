@@ -25,20 +25,13 @@ mongoose
 
 const allowedOrigins = [
   "https://hisabkitab-2.web.app",
-  "http://localhost:5173" 
-
+  
 ];
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, origin);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+  origin: "https://hisabkitab-2.web.app", // ✅ Set explicitly to your frontend URL
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // Allow cookies/auth headers
+  credentials: true, // ✅ Allow cookies/auth headers
   allowedHeaders: "Content-Type,Authorization",
 };
 
