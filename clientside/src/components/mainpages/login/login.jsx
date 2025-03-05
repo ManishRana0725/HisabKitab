@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 import "./Login.css";
+import { AuthContext } from "../../authcontext"; // Import Auth Context
 
 const Login = () => {
+  const { setUser } = useContext(AuthContext); // Get setUser from context
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -19,7 +22,6 @@ const Login = () => {
         password,
       } , { withCredentials: true } // This allows cookies and auth headers
       );
-      // Assuming your backend sends back a token and userId
       // Extract the token and userId correctly
       const { token, user } = response.data;
       const userId = user._id;  // Accessing userId from the user object
@@ -27,6 +29,8 @@ const Login = () => {
       // Store token and userId in localStorage
       localStorage.setItem("token", token);
       localStorage.setItem("userId", userId);
+      // Decode the token and update the global state
+      setUser(jwtDecode(token));  // ✅ Now Header will update immediately
       // Redirect to home page
       navigate("/");
     } catch (err) {
