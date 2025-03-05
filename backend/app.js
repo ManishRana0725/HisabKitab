@@ -22,7 +22,7 @@ mongoose
 //  Middlewares
 app.use(express.json()); // Parse JSON body
 const corsOptions = {
-  origin:  "https://hisabkitab-2.web.app/login", // Allow frontend
+  origin:  "https://hisabkitab-2.web.app", // Allow frontend
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // Allow cookies/auth headers
   allowedHeaders: "Content-Type,Authorization",
