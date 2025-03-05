@@ -10,9 +10,6 @@ const userRoutes = require("./routes/userRoutes");
 const eventRoutes = require("./routes/eventRoutes");
 
 
-
-
-
 const app = express();
 
 //  Database Connection
@@ -25,7 +22,7 @@ mongoose
 //  Middlewares
 app.use(express.json()); // Parse JSON body
 const corsOptions = {
-  origin: "http://localhost:5173", // Allow frontend
+  origin: ["http://localhost:5173" , "https://hisabkitab-2.web.app/login"], // Allow frontend
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // Allow cookies/auth headers
   allowedHeaders: "Content-Type,Authorization",
