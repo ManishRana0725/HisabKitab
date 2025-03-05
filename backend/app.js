@@ -26,6 +26,7 @@ const cors = require("cors");
 const allowedOrigins = [
   "http://localhost:5173",  // Local development
   "https://hisabkitab-2.web.app"  // Deployed frontend
+  
 ];
 
 const corsOptions = {
