@@ -21,16 +21,28 @@ mongoose
 
 //  Middlewares
 app.use(express.json()); // Parse JSON body
+const cors = require("cors");
+
+const allowedOrigins = [
+  "http://localhost:5173",  // Local development
+  "https://hisabkitab-2.web.app"  // Deployed frontend
+];
+
 const corsOptions = {
-  origin:  "https://hisabkitab-2.web.app", // Allow frontend
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true, // Allow cookies/auth headers
   allowedHeaders: "Content-Type,Authorization",
 };
 
-app.use(cors(corsOptions)); // Apply CORS middleware
+app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // Handle preflight requests
-
 //  Routes
 app.use("/friends", friendRoutes); // Friend-related routes
 app.use("/users", userRoutes); // userroutes
