@@ -20,12 +20,12 @@ mongoose
   .catch((err) => console.log(" Database Connection Error:", err));
 
 //  Middlewares
-app.use(express.json()); // Parse JSON body
+
 
 
 const allowedOrigins = [
-  "http://localhost:5173",  // Local development
-  "https://hisabkitab-2.web.app"  // Deployed frontend
+  "https://hisabkitab-2.web.app",
+  "http://localhost:5173" 
 
 ];
 
@@ -44,13 +44,13 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // Handle preflight requests
+app.use(express.json()); // Parse JSON body
 //  Routes
 app.use("/friends", friendRoutes); // Friend-related routes
 app.use("/users", userRoutes); // userroutes
 app.use("/transactions", transactionRoutes); // Transaction-related routes
 //app.use("/pay" , "i am payment routes") // payment routes
 app.use("/event", eventRoutes);// Use Event Routes
-
 
 //  Server Start 
 const PORT = process.env.PORT || 10000; 
