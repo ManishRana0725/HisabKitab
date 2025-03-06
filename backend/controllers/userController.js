@@ -46,7 +46,11 @@ const UserController = {
       if (!user || user.password !== password) {
         return res.status(401).json({ message: "Invalid email or password" });
       }
-        
+      // Compare hashed password
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        return res.status(401).json({ message: "Invalid email or password" });
+      }
       // Generate token
       const token = generateToken(user._id.toString());
       // ✅ Add CORS headers in response

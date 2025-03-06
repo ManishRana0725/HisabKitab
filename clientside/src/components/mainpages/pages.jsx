@@ -27,15 +27,7 @@ export default function Pages() {
             <Route path="/profile" element={<Profile/>} />
             <Route path="/pay/:formattedEventName/:formattedFriendName/:friendId" element={<PayPage />} /> 
         </Routes>
-        // har ek api request pe checkToken file pass karo aur forntend se header authication pass karo
+        // signup wale page ko sahi karo usme password ko check karne se phale bwt se pass karo 
     );
 }
 
-// const token = localStorage.getItem("token"); // Retrieve token from localStorage
-// if (!token) {
-//     throw new Error("No authentication token found");
-// }
-// console.log("token of the login user :",token)
-// const res = await axios.get(`http://localhost:8080/api_market/category/${id}/api/all`, {
-//     headers: { Authorization: `Bearer ${token}` }
-// }); // ✅ Replace with actual API endpoint
