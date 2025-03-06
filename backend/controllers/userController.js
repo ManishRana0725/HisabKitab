@@ -43,7 +43,7 @@ const UserController = {
       
       // Find user by email
       const user = await User.findOne({ email });
-      if (!user || user.password !== password) {
+      if (!user ) {
         return res.status(401).json({ message: "Invalid email or password" });
       }
       // Compare hashed password
