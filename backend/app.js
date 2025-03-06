@@ -24,19 +24,26 @@ mongoose
 
 
 const allowedOrigins = [
-  "https://hisabkitab-2.web.app",
-  
+  "http://localhost:5173",  // Local development
+  "https://hisabkitab-2.web.app",  // Deployed frontend
 ];
 
 const corsOptions = {
-  origin: "https://hisabkitab-2.web.app", // ✅ Set explicitly to your frontend URL
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true, // ✅ Allow cookies/auth headers
+  credentials: true, // Allow cookies/auth headers
   allowedHeaders: "Content-Type,Authorization",
 };
 
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // Handle preflight requests
+
 app.use(express.json()); // Parse JSON body
 //  Routes
 app.use("/friends", friendRoutes); // Friend-related routes
