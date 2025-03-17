@@ -45,10 +45,11 @@ const NewFriend = () => {
         link.download = "Friend_QR_Code.pdf"; // Adjust filename as needed
         document.body.appendChild(link);
         link.click();
-        document.body.removeChild(link);
+        document.body.removeChild(link);// ✅ Delay navigation slightly to allow download to trigger
+        setTimeout(() => navigate("/"), 1000);
+      } else {
+        navigate("/"); // ✅ Fallback navigation if no QR URL
       }
-
-      navigate("/"); 
     } catch (error) {
       console.error("Error creating friend:", error);
     }
