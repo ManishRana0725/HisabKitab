@@ -37,7 +37,7 @@ HisabKitab is a **Payment Tracking App** designed to simplify managing and recor
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/your-username/hisabkitab.git
+git clone https://github.com/manishrana0725/hisabkitab.git
 cd hisabkitab
 ```
 
@@ -72,7 +72,7 @@ npm run dev
 ```
 
 ## 🌎 Live Demo
-[HisabKitab Live](https://your-live-demo-link.com)
+[HisabKitab Live](https://hisabkitab-2.web.app/)
 
 ## 📌 Future Enhancements
 - 🔹 **Export Transactions as PDF**
