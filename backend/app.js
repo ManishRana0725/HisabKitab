@@ -40,6 +40,10 @@ const corsOptions = {
   credentials: true, // Allow cookies/auth headers
   allowedHeaders: "Content-Type,Authorization",
 };
+app.use((req, res, next) => {
+  console.log("Incoming request from:", req.headers.origin);
+  next();
+});
 
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // Handle preflight requests
