@@ -32,7 +32,22 @@ const NewFriend = () => {
       const response = await axios.post("https://hisabkitab-2.onrender.com/friends", formData, {
         headers: { Authorization: `Bearer ${token}` }, // ✅ Send token in headers
       });
+
       console.log("Friend created:", response.data);
+
+      // ✅ Extract the QR Code URL from response
+      const qrCodeUrl = response.data.qrCodePdf; // Make sure backend returns `qrCodePdf` URL
+
+      if (qrCodeUrl) {
+        // ✅ Trigger download
+        const link = document.createElement("a");
+        link.href = qrCodeUrl;
+        link.download = "Friend_QR_Code.pdf"; // Adjust filename as needed
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+
       navigate("/"); 
     } catch (error) {
       console.error("Error creating friend:", error);

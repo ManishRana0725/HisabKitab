@@ -11,7 +11,7 @@ const eventRoutes = require("./routes/eventRoutes");
 
 
 const app = express();
-
+app.use("/qrcodes", express.static(path.join(__dirname, "qrcodes")));
 //  Database Connection
 const URL = process.env.DATABASE_URL;
 mongoose

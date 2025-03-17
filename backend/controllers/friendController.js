@@ -3,53 +3,46 @@ const Event = require("../models/EventModel.js");
 const generateQrPdf = require("../utils/qrToPdf.js")
 const getpdf = require("../public/getpdf.js");
 const generateQRCode = require("../utils/qrGenerator.js")
-
+const path = require("path");
+const fs = require("fs");
 // Create a new friend & generate QR code image
 const FriendController = {
     createFriend : async (req, res) => {
-      try {
-        const { name, phone, userId, eventName } = req.body;
+        try {
+            const { name, phone, userId, eventName } = req.body;
         
-        // 🔹 Find or create the event
-        let event = await Event.findOne({ name: eventName, user: userId });
-
-        if (!event) {
-            event = new Event({
-                name: eventName,
-                user: userId,
-                date: new Date(),
-                transactions: []
-            });
-            await event.save();
-        }
-
-        // 🔹 Check if the friend already exists for this user
-        let friend = await Friend.findOne({ name, user: userId });
-
-        if (!friend) {
-            // ✅ Create a new friend
-            friend = new Friend({ name, phone, user: userId, events: [] });
-        }
-
-        // 🔹 Check if this friend is already part of the event
-        const alreadyInEvent = friend.events.some(e => e.event.equals(event._id));
-
-        if (!alreadyInEvent) {
-            // ✅ Add event ID & Name to friend
-            friend.events.push({ event: event._id, eventName: event.name });
-            await friend.save();
-        }
+            // 🔹 Find or create the event
+            let event = await Event.findOne({ name: eventName, user: userId });
+            if (!event) {
+              event = new Event({ name: eventName, user: userId, date: new Date(), transactions: [] });
+              await event.save();
+            }
         
-        // 🔹 Generate QR Code for this friend and event
-        const qrCodeImage = await generateQRCode(friend._id, friend.name, event.name);
-        const qrCodePdf = await generateQrPdf(qrCodeImage.replace('/qrcodes/', '').replace('.png', ''));
-
-        res.status(201).json({ friend, qrCodePdf });
-
-    } catch (error) {
-        console.error("❌ Error creating friend:", error);
-        res.status(500).json({ message: "Error creating friend", error: error.message });
-    }
+            // 🔹 Check if the friend already exists
+            let friend = await Friend.findOne({ name, user: userId });
+            if (!friend) {
+              friend = new Friend({ name, phone, user: userId, events: [] });
+            }
+        
+            // 🔹 Check if friend is already in the event
+            const alreadyInEvent = friend.events.some(e => e.event.equals(event._id));
+            if (!alreadyInEvent) {
+              friend.events.push({ event: event._id, eventName: event.name });
+              await friend.save();
+            }
+        
+            // ✅ Generate & Save QR Code
+            const qrCodePath = await generateQRCode(friend._id, friend.name, event.name);
+            
+            // ✅ Serve QR Codes via Express Static
+            const qrCodeUrl = `https://hisabkitab-2.onrender.com/qrcodes/${path.basename(qrCodePath)}`;
+        
+            res.status(201).json({ friend, qrCodeUrl });
+        
+          } catch (error) {
+            console.error("❌ Error creating friend:", error);
+            res.status(500).json({ message: "Error creating friend", error: error.message });
+          }
     },
     getQrPdf: async (req, res) => {
       try {
