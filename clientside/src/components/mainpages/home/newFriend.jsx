@@ -32,36 +32,48 @@ const NewFriend = () => {
       const response = await axios.post("https://hisabkitab-2.onrender.com/friends", formData, {
         headers: { Authorization: `Bearer ${token}` }, // ✅ Send token in headers
       });
-
+  
       console.log("Friend created:", response.data);
-
+  
       // ✅ Extract the QR Code URL from response
       const qrCodeUrl = response.data.qrCodeUrl; // Make sure backend returns `qrCodeUrl` in response
-
+  
       if (qrCodeUrl) {
-      // ✅ Fetch QR image as a Blob
-      const res = await fetch(qrCodeUrl);
-      const blob = await res.blob();
-
-      // ✅ Create an object URL and force download
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = `QR_${formData.name}.png`; // Set filename dynamically
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      // ✅ Revoke object URL after some time to free memory
-      setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+        try {
+          // ✅ Fetch QR image as a Blob
+          const res = await fetch(qrCodeUrl);
+          if (!res.ok) {
+            throw new Error(`Failed to fetch QR code: ${res.statusText}`);
+          }
+          const blob = await res.blob();
+  
+          // ✅ Create an object URL and force download
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(blob);
+          link.download = `QR_${formData.name}.png`; // Set filename dynamically
+          document.body.appendChild(link);
+  
+          // Small delay to ensure the link is appended to the DOM
+          setTimeout(() => {
+            link.click();
+            document.body.removeChild(link);
+  
+            // ✅ Revoke object URL after some time to free memory
+            setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+          }, 100); // 100ms delay
+          console.log("ALL steps have completed of downloading a qr which is generated")
+        } catch (error) {
+          console.error("Error fetching QR code:", error);
+        }
+      }
+  
+      // ✅ Navigate AFTER download
+      setTimeout(() => {
+        navigate("/");
+      }, 1000); // 1s delay to ensure the download starts first
+    } catch (error) {
+      console.error("Error creating friend:", error);
     }
-
-    // ✅ Navigate AFTER download
-    setTimeout(() => {
-      navigate("/");
-    }, 1000); // 1s delay to ensure the download starts first
-  } catch (error) {
-    console.error("Error creating friend:", error);
-  }
   };
   
 
