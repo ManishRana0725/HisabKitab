@@ -47,11 +47,11 @@ const NewFriend = () => {
         link.click();
         document.body.removeChild(link);
 
-        // ✅ Delay navigation slightly to allow download to trigger
-        setTimeout(() => navigate("/"), 1000);
-      } else {
-        navigate("/"); // ✅ Fallback navigation if no QR URL
-      }
+      } 
+      // ✅ Navigate AFTER download
+      setTimeout(() => {
+        navigate("/");
+      }, 2000); // 2s delay to ensure the download starts first
 
     } catch (error) {
       console.error("Error creating friend:", error);
