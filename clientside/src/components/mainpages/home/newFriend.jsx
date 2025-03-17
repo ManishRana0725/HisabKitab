@@ -39,23 +39,29 @@ const NewFriend = () => {
       const qrCodeUrl = response.data.qrCodeUrl; // Make sure backend returns `qrCodeUrl` in response
 
       if (qrCodeUrl) {
-        // ✅ Trigger download
-        const link = document.createElement("a");
-        link.href = qrCodeUrl;
-        link.download = `QR_${formData.name}.png`; // Set filename dynamically
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+      // ✅ Fetch QR image as a Blob
+      const res = await fetch(qrCodeUrl);
+      const blob = await res.blob();
 
-      } 
-      // ✅ Navigate AFTER download
-      setTimeout(() => {
-        navigate("/");
-      }, 1000); // 1s delay to ensure the download starts first
+      // ✅ Create an object URL and force download
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `QR_${formData.name}.png`; // Set filename dynamically
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
-    } catch (error) {
-      console.error("Error creating friend:", error);
+      // ✅ Revoke object URL after some time to free memory
+      setTimeout(() => URL.revokeObjectURL(link.href), 1000);
     }
+
+    // ✅ Navigate AFTER download
+    setTimeout(() => {
+      navigate("/");
+    }, 1000); // 1s delay to ensure the download starts first
+  } catch (error) {
+    console.error("Error creating friend:", error);
+  }
   };
   
 
