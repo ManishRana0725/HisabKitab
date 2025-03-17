@@ -36,20 +36,23 @@ const NewFriend = () => {
       console.log("Friend created:", response.data);
 
       // ✅ Extract the QR Code URL from response
-      const qrCodeUrl = response.data.qrCodePdf; // Make sure backend returns `qrCodePdf` URL
+      const qrCodeUrl = response.data.qrCodeUrl; // Make sure backend returns `qrCodeUrl` in response
 
       if (qrCodeUrl) {
         // ✅ Trigger download
         const link = document.createElement("a");
         link.href = qrCodeUrl;
-        link.download = "Friend_QR_Code.pdf"; // Adjust filename as needed
+        link.download = `QR_${formData.name}.png`; // Set filename dynamically
         document.body.appendChild(link);
         link.click();
-        document.body.removeChild(link);// ✅ Delay navigation slightly to allow download to trigger
+        document.body.removeChild(link);
+
+        // ✅ Delay navigation slightly to allow download to trigger
         setTimeout(() => navigate("/"), 1000);
       } else {
         navigate("/"); // ✅ Fallback navigation if no QR URL
       }
+
     } catch (error) {
       console.error("Error creating friend:", error);
     }
