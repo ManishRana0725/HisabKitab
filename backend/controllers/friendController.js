@@ -1,6 +1,7 @@
 const Friend = require("../models/FriendModel.js");
 const Event = require("../models/EventModel.js");
 const generateQrPdf = require("../utils/qrToPdf.js")
+const cloudinary = require("../utils/cloudinary"); // Import Cloudinary config
 const getpdf = require("../public/getpdf.js");
 const generateQRCode = require("../utils/qrGenerator.js")
 const path = require("path");
@@ -37,12 +38,23 @@ const FriendController = {
             // ✅ Serve QR Codes via Express Static
             const qrCodeUrl = `https://hisabkitab-2.onrender.com/qrcodes/${path.basename(qrCodePath)}`;
         
-            res.status(201).json({ friend, qrCodeUrl });
-        
-          } catch (error) {
-            console.error("❌ Error creating friend:", error);
-            res.status(500).json({ message: "Error creating friend", error: error.message });
-          }
+          // ✅ Step 2: Upload the generated QR Code to Cloudinary
+          const result = await cloudinary.uploader.upload(qrCodePath, {
+            folder: "qr-codes",
+            public_id: `qr_${friend._id}_${Date.now()}`,
+            resource_type: "image",
+          });
+      
+          // ✅ Step 3: Delete local QR Code file after upload
+          fs.unlinkSync(qrCodePath);
+      
+          // ✅ Step 4: Return the Cloudinary URL
+          res.status(201).json({ friend, qrCodeUrl: result.secure_url });
+      
+        } catch (error) {
+          console.error("❌ Error creating friend:", error);
+          res.status(500).json({ message: "Error creating friend", error: error.message });
+        }
     },
     getQrPdf: async (req, res) => {
       try {

@@ -51,7 +51,7 @@ const NewFriend = () => {
       // ✅ Navigate AFTER download
       setTimeout(() => {
         navigate("/");
-      }, 2000); // 2s delay to ensure the download starts first
+      }, 1000); // 1s delay to ensure the download starts first
 
     } catch (error) {
       console.error("Error creating friend:", error);

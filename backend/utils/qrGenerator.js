@@ -65,8 +65,9 @@ const generateQRCode = async (friendId, friendName, eventName) => {
 
     console.log("QR Code generated:", qrData); // Debugging log
 
-    // Return the public URL of the QR image
-    return `/qrcodes/${qrImageFilename}`; 
+    // Return the absolute file path for Cloudinary upload
+    return qrImagePath;  
+ 
 
   } catch (error) {
     console.error("QR Code Generation Error:", error);
