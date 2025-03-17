@@ -34,13 +34,17 @@ const NewFriend = () => {
             formData,
             { headers: { Authorization: `Bearer ${token}` } }
         );
-
+        let val = 0;
+        
         console.log("Friend created:", response.data);
 
         const qrCodeUrl = response.data.qrCodeUrl;
+        console.log("QR code is :" , qrCodeUrl);
         if (qrCodeUrl) {
             console.log("Fetching QR Code from:", qrCodeUrl);
+            val = 1;
             try {
+                console.log("we are inside and fetching qr code")
                 const res = await fetch(qrCodeUrl);
                 if (!res.ok) {
                     throw new Error(`Failed to fetch QR code: ${res.statusText}`);
@@ -48,9 +52,10 @@ const NewFriend = () => {
 
                 const blob = await res.blob();
                 const objectURL = window.URL.createObjectURL(blob);
-
+                console.log("now we are tring to acces blob adn objectURL")
                 const link = document.createElement("a");
                 link.href = objectURL;
+
                 link.download = `QR_${formData.name}.png`;
                 document.body.appendChild(link);
 
@@ -65,7 +70,7 @@ const NewFriend = () => {
                 console.error("Error fetching QR code:", error);
             }
         }
-
+        console.log("vlaue of vla is :" , val);
         setTimeout(() => {
             navigate("/");
         }, 1000);
