@@ -28,14 +28,6 @@ HisabKitab is a **Payment Tracking App** designed to simplify managing and recor
 - **Backend:** Deployed on **Render** (or your current deployment platform)
 - **Database:** Hosted on **MongoDB Atlas**
 
-## 🔗 API Routes
-### Friend Routes
-- `POST /friends` → Create a friend & generate QR
-- `GET /friends/:id` → Get friend details
-
-### Transaction Routes
-- `POST /transactions` → Record a payment
-- `GET /transactions/:friendId` → Fetch a friend’s payment history
 
 ## 📦 Installation & Setup
 ### Prerequisites
