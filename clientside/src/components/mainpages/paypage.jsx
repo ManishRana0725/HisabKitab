@@ -35,8 +35,13 @@ const PayPage = () => {
 
   // Handle UPI Payment
   const handleUPIPayment = () => {
-    const upiId = "your-upi-id@upi"; // Replace with actual UPI ID
-    const payUrl = `upi://pay?pa=${upiId}&pn=${friend?.name}&mc=&tid=&tr=&tn=Payment&am=${amount}&cu=INR`;
+    if (!amount || amount <= 0) {
+      alert("Please enter a valid amount");
+      return;
+    }
+    const upiId = "manishbadm0725@oksbi"; // Replace with actual UPI ID
+    const payUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(friend?.name)}&am=${amount}&cu=INR&tn=Payment`;
+    
     window.location.href = payUrl; // Redirect to UPI payment app
   };
 
@@ -55,12 +60,15 @@ const PayPage = () => {
             onChange={(e) => setAmount(e.target.value)}
           />
           <button onClick={handleUPIPayment}>Pay via UPI</button>
-          {/* <button onClick={handleStripePayment}>Pay via Stripe</button> */}
+
+          {/* UPI QR Code for Desktop Users */}
+          <QRCode value={payUrl} size={200} />
         </div>
       ) : (
         <p>Friend not found</p>
       )}
     </div>
+
   );
 };
 
