@@ -28,8 +28,8 @@ const NewFriend = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);  // Show loading state
-    setSuccessMessage("");  // Reset message
+    setLoading(true);  
+    setSuccessMessage("");  
 
     try {
         const token = localStorage.getItem("token");
@@ -43,34 +43,18 @@ const NewFriend = () => {
         const qrCodeUrl = response.data.qrCodeUrl;
 
         if (qrCodeUrl) {
-            try {
-                console.log("Fetching QR Code from:", qrCodeUrl);
+            console.log("Generating download link for QR Code...");
 
-                const res = await fetch(qrCodeUrl, { mode: "cors" });
-                if (!res.ok) {
-                    throw new Error(`Failed to fetch QR code: ${res.statusText}`);
-                }
+            // ✅ Directly create a download link
+            const link = document.createElement("a");
+            link.href = qrCodeUrl;
+            link.download = `QR_${formData.name}.png`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
 
-                const blob = await res.blob();
-                const objectURL = window.URL.createObjectURL(blob);
-
-                const link = document.createElement("a");
-                link.href = objectURL;
-                link.download = `QR_${formData.name}.png`; // Dynamic filename
-                document.body.appendChild(link);
-
-                link.click(); // Auto-trigger download
-                document.body.removeChild(link);
-
-                setTimeout(() => {
-                    window.URL.revokeObjectURL(objectURL); // Cleanup
-                    console.log("✅ QR Code download completed.");
-                    setSuccessMessage("✅ QR Code downloaded successfully!"); // Show success message
-                }, 1000);
-            } catch (error) {
-                console.error("Error fetching QR code:", error);
-                setSuccessMessage("❌ Failed to download QR Code.");
-            }
+            console.log("✅ QR Code download started.");
+            setSuccessMessage("✅ QR Code downloaded successfully!");
         }
 
         setTimeout(() => {
@@ -78,10 +62,12 @@ const NewFriend = () => {
         }, 2000);
     } catch (error) {
         console.error("Error creating friend:", error);
+        setSuccessMessage("❌ Failed to download QR Code.");
     } finally {
         setLoading(false);
     }
 };
+
 
 
   
