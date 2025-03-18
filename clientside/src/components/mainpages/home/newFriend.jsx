@@ -42,20 +42,24 @@ const NewFriend = () => {
         console.log("Friend created:", response.data);
         const qrCodeUrl = response.data.qrCodeUrl;
 
-        if (qrCodeUrl) {
-            console.log("Generating download link for QR Code...");
+        // Open the QR Code in a new tab
+        window.open(qrCodeUrl, "_blank", "noopener,noreferrer");
 
-            // ✅ Directly create a download link
-            const link = document.createElement("a");
-            link.href = qrCodeUrl;
-            link.download = `QR_${formData.name}.png`;
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+        
+        // if (qrCodeUrl) {
+        //     console.log("Generating download link for QR Code...");
 
-            console.log("✅ QR Code download started.");
-            setSuccessMessage("✅ QR Code downloaded successfully!");
-        }
+        //     // // Open the QR Code in the same tab
+        //     // window.open(qrCodeUrl, "_blank");
+
+
+        //     // Open the QR Code in a new tab
+        //     window.open(qrCodeUrl, "_blank", "noopener,noreferrer");
+
+
+        //     // console.log("✅ QR Code download started.");
+        //     // setSuccessMessage("✅ QR Code downloaded successfully!");
+        // }
 
         setTimeout(() => {
             navigate("/");
