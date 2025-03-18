@@ -40,16 +40,6 @@ const PayPage = () => {
     window.location.href = payUrl; // Redirect to UPI payment app
   };
 
-  // Handle Stripe Payment
-//   const handleStripePayment = async () => {
-//     try {
-//       const response = await axios.post("/api/checkout", { amount, friendId });
-//       window.location.href = response.data.checkoutUrl; // Redirect to Stripe
-//     } catch (error) {
-//       console.error("Error processing payment:", error);
-//     }
-//   };
-
   return (
     <div className="pay-container">
       {loading ? (
