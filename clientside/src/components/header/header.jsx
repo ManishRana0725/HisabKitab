@@ -1,36 +1,50 @@
 
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { BsFillPersonFill } from "react-icons/bs";
+import { FaBars, FaTimes } from "react-icons/fa"; // Icons for menu toggle
 import { AuthContext } from "../authcontext"; // Import Auth Context
 
 import "./Header.css";
 
 const Header = () => {
   const { user } = useContext(AuthContext); // ✅ Now user is globally managed
-
+  const [menuOpen, setMenuOpen] = useState(false); // State to toggle menu
   return (
     <header className="header">
       <div className="logo">
         <h1>HisabKitab</h1>
       </div>
-      <nav>
-        <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/allfriends">Friends</Link></li>
-          <li><Link to="/transactions">Transactions</Link></li>
-          <li><Link to="/allevent">Events</Link></li>
+
+      {/* Hamburger Menu for Mobile */}
+
+      <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+        {menuOpen ? <FaTimes /> : <FaBars />}
+      </div>
+
+     {/* Navigation */}
+     <nav className={menuOpen ? "nav-links nav-active" : "nav-links"}>
+        <ul>
+          <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
+          <li><Link to="/allfriends" onClick={() => setMenuOpen(false)}>Friends</Link></li>
+          <li><Link to="/transactions" onClick={() => setMenuOpen(false)}>Transactions</Link></li>
+          <li><Link to="/allevent" onClick={() => setMenuOpen(false)}>Events</Link></li>
         </ul>
       </nav>
 
+      {/* Call to Action Buttons */}
       <div className="cta">
         {!user ? (
           <>
-            <Link to="/login"><button className="login-btn">Login</button></Link>
-            <Link to="/signup"><button className="signup-btn">Signup</button></Link>
+            <Link to="/login" onClick={() => setMenuOpen(false)}>
+              <button className="login-btn">Login</button>
+            </Link>
+            <Link to="/signup" onClick={() => setMenuOpen(false)}>
+              <button className="signup-btn">Signup</button>
+            </Link>
           </>
         ) : (
-          <Link to="/profile">
+          <Link to="/profile" onClick={() => setMenuOpen(false)}>
             <BsFillPersonFill className="profile-icon" />
           </Link>
         )}

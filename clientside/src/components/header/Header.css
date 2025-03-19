@@ -1,141 +1,172 @@
 /* General Styles */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  body {
-    background-color: #f9f9f9; /* Light background for contrast */
-    color: #2c3e50; /* Dark gray text for a more premium feel */
-  }
-  
-  /* Header */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f9f9f9;
+  color: #2c3e50;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 70px;
+  background-color: #ffffff;
+  color: #2c3e50;
+  z-index: 1000;
+}
+
+/* Logo */
+.logo h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: goldenrod;
+  text-transform: uppercase;
+  transition: transform 0.3s ease;
+}
+
+.logo h1:hover {
+  transform: scale(1.1);
+}
+
+/* Navigation */
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+
+.nav-links ul {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+}
+
+.nav-links ul li a {
+  color: #2c3e50;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-links ul li a:hover {
+  color: #ffffff;
+  background-color: goldenrod;
+}
+
+/* Call to Action Buttons */
+.cta button {
+  padding: 10px 20px;
+  border: none;
+  font-size: 1rem;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta .login-btn {
+  background-color: #7f8c8d;
+  color: white;
+}
+
+.cta .signup-btn {
+  background-color: rgb(217, 165, 32);
+  color: white;
+}
+
+.cta button:hover {
+  transform: translateY(-2px);
+}
+
+.cta .login-btn:hover {
+  background-color: #95a5a6;
+}
+
+.cta .signup-btn:hover {
+  background-color: rgb(230, 164, 0);
+}
+
+.profile-icon {
+  width: 40px;
+  height: 40px;
+  color: rgb(217, 165, 32);
+  cursor: pointer;
+}
+
+.profile-icon:hover {
+  background-color: rgba(0, 0, 0, 0.11);
+  transition: background-color 0.4s ease, transform 0.4s ease;
+}
+
+/* 🔹 Responsive Navbar for Mobile */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: goldenrod;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: all 0.3s ease;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 70px;
-    background-color: #ffffff; /* White background for a clean look */
-    color: #2c3e50; /* Dark gray text for readability */
-    z-index: 1000;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
   }
-  
-  header:hover {
-    background-color: #ecf0f1; /* Light gray hover effect */
+
+  .menu-toggle {
+      display: block;
   }
-  
-  /* Logo */
-  .logo h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: goldenrod; /* Premium gold color for logo */
-    text-transform: uppercase;
-    padding-top: 5px;
-    transition: transform 0.3s ease;
-    
-  }
-  
-  .logo h1:hover {
-    transform: scale(1.1); /* Slight scale effect on hover */
-  }
-  
-  /* Navigation */
-  nav ul {
-    display: flex;
-    list-style: none;
-    gap: 30px;
-  }
-  
-  nav ul li {
-    position: relative;
-  }
-  
-  nav ul li a { /* Changed from 'link' to 'a' */
-    color: #2c3e50; /* Dark gray color for links */
-    text-decoration: none; /* Remove underline */
-    font-size: 1rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    padding: 8px 15px;
-    border-radius: 5px; /* Rounded corners for a modern touch */
-    transition: color 0.3s ease, background-color 0.3s ease;
-  }
-  
-  nav ul li a:hover {
-    color: #ffffff; /* White text color on hover */
-    background-color: goldenrod; /* Premium gold on hover */
-  }
-  
-  /* Call to Action Buttons */
-  .cta button {
-    padding: 10px 20px;
-    border: none;
-    font-size: 1rem;
-    margin-left: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-  
-  .cta .login-btn {
-    background-color: #7f8c8d; /* Premium gray for login button */
-    color: white;
-  }
-  
-  .cta .signup-btn {
-    background-color: rgb(217, 165, 32); /* Premium gold for signup button */
-    color: white;
-  }
-  
-  .cta button:hover {
-    transform: translateY(-2px); /* Slight upward shift on hover */
-  }
-  
-  .cta .login-btn:hover {
-    background-color: #95a5a6; /* Lighter gray on hover */
-  }
-  
-  .cta .signup-btn:hover {
-    background-color: rgb(230, 164, 0) ;/* Darker gold on hover  */
-  }
-  .profile-icon {
-    width: 40px;
-    height: 40px;
-    color:  rgb(217, 165, 32);
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-  }
-  .profile-icon:hover{
-    background-color: rgba(0, 0, 0, 0.11);
-    transition: background-color 0.4s ease, transform 0.4s ease
-  }
-  
-  /* Responsive */
-  @media (max-width: 768px) {
-    header {
+
+  .nav-links {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: white;
       flex-direction: column;
-      align-items: flex-start;
+      text-align: center;
       padding: 20px;
-    }
-  
-    nav ul {
-      flex-direction: column;
-      gap: 15px;
-    }
-  
-    .cta {
-      margin-top: 15px;
-    }
+      display: none;
   }
-  
+
+  .nav-links.nav-active {
+      display: flex;
+  }
+
+  .nav-links ul {
+      flex-direction: column;
+      width: 100%;
+  }
+
+  .nav-links ul li {
+      padding: 10px 0;
+  }
+
+  .cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+  }
+}

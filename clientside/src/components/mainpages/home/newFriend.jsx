@@ -45,7 +45,7 @@ const NewFriend = () => {
         // Open the QR Code in a new tab
         window.open(qrCodeUrl, "_blank", "noopener,noreferrer");
 
-        
+
         // if (qrCodeUrl) {
         //     console.log("Generating download link for QR Code...");
 
@@ -108,3 +108,23 @@ const NewFriend = () => {
 };
 
 export default NewFriend;
+
+
+
+
+
+
+
+// const qrCodeUrl = "https://res.cloudinary.com/dth0tvezm/image/upload/v1742280062/qr-codes/qr_67ac24a9aa6139419c41edf0_1742280062448.png";
+
+// fetch(qrCodeUrl)
+//   .then(response => {
+//     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+//     return response.blob();
+//   })
+//   .then(blob => {
+//     console.log("✅ Fetch Successful, Blob Size:", blob.size);
+//     const objectURL = URL.createObjectURL(blob);
+//     window.open(objectURL, "_blank"); // Open QR code image in new tab
+//   })
+//   .catch(error => console.error("❌ Fetch Error:", error));
