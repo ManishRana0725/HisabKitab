@@ -27,7 +27,7 @@ export default function Pages() {
             <Route path="/profile" element={<Profile/>} />
             <Route path="/pay/:formattedEventName/:formattedFriendName/:friendId" element={<PayPage />} /> 
         </Routes>
-        // signup wale page ko sahi karo usme password ko check karne se phale bwt se pass karo 
+         
     );
 }
 
