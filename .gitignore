@@ -10,7 +10,7 @@ clientside/aaaa
 clientside/build
 clientside/.firebaserc
 clientside/firebase.json
-clientside/package.json
+
 clientside/dist
 # Ignore environment variables
 .env
