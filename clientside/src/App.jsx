@@ -7,7 +7,7 @@ import Fotter from "./components/fotter/fotter.jsx"
 function App() {
   return (
     <Router>
-      
+      <Header/>
       <Pages/>
       <Fotter/>
   </Router>
