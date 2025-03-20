@@ -25,7 +25,7 @@ mongoose
 
 const allowedOrigins = [
   "http://localhost:5173",  // Local development
-  "https://hisabkitab-2.web.app",  // Deployed frontend
+  "https://hisab-kitab-n3k6.vercel.app",  // Deployed frontend
 ];
 
 const corsOptions = {
