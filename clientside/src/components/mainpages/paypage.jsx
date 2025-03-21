@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import QRCode from "qrcode.react"; // ✅ Import QR Code
+// import QRCode from "qrcode.react"; // ✅ Import QR Code
 import "./paypage.css"; // Import CSS
 
 const PayPage = () => {
