@@ -34,7 +34,7 @@ const Friends = () => {
 
   return (
     <div className="friends-container">
-      <h2>My Friends</h2>
+      <h2>Mere Ristedar</h2>
 
       {loading && <p>Loading friends...</p>}
       {error && <p style={{ color: "red" }}>{error}</p>}
