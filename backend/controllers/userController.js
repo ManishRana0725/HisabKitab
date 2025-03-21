@@ -54,7 +54,7 @@ const UserController = {
       // Generate token
       const token = generateToken(user._id.toString());
       // ✅ Add CORS headers in response
-      res.header("Access-Control-Allow-Origin", "https://hisabkitab-2.web.app");
+      res.header("Access-Control-Allow-Origin", "https://hisab-kitab-n3k6.vercel.app");
       res.header("Access-Control-Allow-Credentials", "true");
 
       res.json({ message: "Login successful", token, user });
