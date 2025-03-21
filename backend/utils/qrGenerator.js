@@ -38,7 +38,7 @@ const QRCode = require("qrcode");
 const path = require("path");
 const fs = require("fs");
 
-const BASE_URL = "https://hisabkitab-2.web.app"; // Change this to your real domain
+const BASE_URL = "https://hisab-kitab-n3k6.vercel.app"; // Change this to your real domain
 
 // Generate and save QR Code as an image
 const generateQRCode = async (friendId, friendName, eventName) => {
