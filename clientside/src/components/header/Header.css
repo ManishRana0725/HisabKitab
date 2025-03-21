@@ -1,4 +1,4 @@
-
+/* General Styles */
 * {
   margin: 0;
   padding: 0;
@@ -11,6 +11,7 @@ body {
   color: #2c3e50;
 }
 
+/* Header */
 header {
   display: flex;
   justify-content: space-between;
@@ -28,7 +29,7 @@ header {
   z-index: 1000;
 }
 
-
+/* Logo */
 .logo h1 {
   font-size: 1.8rem;
   font-weight: 700;
@@ -42,6 +43,7 @@ header {
   transform: scale(1.1);
 }
 
+/* Navigation */
 .nav-links {
   display: flex;
   list-style: none;
@@ -69,7 +71,7 @@ header {
   background-color: goldenrod;
 }
 
- 
+/* Call to Action Buttons */
 .cta button {
   padding: 10px 20px;
   border: none;
@@ -114,3 +116,57 @@ header {
   transition: background-color 0.4s ease, transform 0.4s ease;
 }
 
+/* 🔹 Responsive Navbar for Mobile */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: goldenrod;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+  }
+
+  .menu-toggle {
+      display: block;
+  }
+
+  .nav-links {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: white;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      display: none;
+  }
+
+  .nav-links.nav-active {
+      display: flex;
+  }
+
+  .nav-links ul {
+      flex-direction: column;
+      width: 100%;
+  }
+
+  .nav-links ul li {
+      padding: 10px 0;
+  }
+
+  .cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+  }
+}
