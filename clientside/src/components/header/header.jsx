@@ -12,15 +12,19 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false); // State to toggle menu
   return (
     <header className="header">
+
+       {/* Hamburger Menu for Mobile */}
+
+       <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+        {menuOpen ? <FaTimes /> : <FaBars />}
+      </div>
+
+
       <div className="logo">
         <h1>HisabKitab</h1>
       </div>
 
-      {/* Hamburger Menu for Mobile */}
-
-      <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
-        {menuOpen ? <FaTimes /> : <FaBars />}
-      </div>
+     
 
      {/* Navigation */}
      <nav className={menuOpen ? "nav-links nav-active" : "nav-links"}>
@@ -33,7 +37,7 @@ const Header = () => {
       </nav>
 
       {/* Call to Action Buttons */}
-      <div className="cta">
+      <div className="cta " >
         {!user ? (
           <>
             <Link to="/login" onClick={() => setMenuOpen(false)}>
