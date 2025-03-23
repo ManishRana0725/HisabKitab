@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="logo">
-        <h1>Shagun Ki Diary</h1>
+        <h1>HisabKitab</h1>
       </div>
 
       {/* Hamburger Menu for Mobile */}
@@ -26,8 +26,8 @@ const Header = () => {
      <nav className={menuOpen ? "nav-links nav-active" : "nav-links"}>
         <ul>
           <li><Link to="/" onClick={() => setMenuOpen(false)}>Home</Link></li>
-          <li><Link to="/allfriends" onClick={() => setMenuOpen(false)}>Rishtedar</Link></li>
-          <li><Link to="/transactions" onClick={() => setMenuOpen(false)}>Shaguns</Link></li>
+          <li><Link to="/allfriends" onClick={() => setMenuOpen(false)}>Friends</Link></li>
+          {/* <li><Link to="/transactions" onClick={() => setMenuOpen(false)}>Shaguns</Link></li> */}
           <li><Link to="/allevent" onClick={() => setMenuOpen(false)}>Functions</Link></li>
         </ul>
       </nav>
