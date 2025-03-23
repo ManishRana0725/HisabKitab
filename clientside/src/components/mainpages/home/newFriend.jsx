@@ -100,7 +100,7 @@ const NewFriend = () => {
         <input type="text" name="eventName" value={formData.eventName} onChange={handleChange} required />
 
        <button type="submit" className="createfriend-button" disabled={loading}>
-        {loading ? "Creating..." : "Create Friend"}
+        {loading ? "Creating..." : "Create Qr"}
       </button>
       </form>
     </div>
