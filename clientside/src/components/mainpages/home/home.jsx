@@ -5,7 +5,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <h1>HisabKitab</h1>
+      <h1>Welcome to Payment Tracker</h1>
       <button className="new-friend-btn" onClick={() => navigate("/new-friend")}>
         New Friend
       </button>
