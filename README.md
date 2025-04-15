@@ -72,7 +72,7 @@ npm run dev
 ```
 
 ## 🌎 Live Demo
-[HisabKitab Live](https://hisabkitab-2.web.app/)
+[HisabKitab Live](https://hisab-kitab-n3k6.vercel.app)
 
 ## 📌 Future Enhancements
 - 🔹 **Export Transactions as PDF**
