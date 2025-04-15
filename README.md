@@ -24,7 +24,7 @@ HisabKitab is a **Payment Tracking App** designed to simplify managing and recor
 - **JWT Authentication** (for secure user login)
 
 ### 📡 Deployment
-- **Frontend:** Deployed on **Firebase Hosting**
+- **Frontend:** Deployed on **Vercel Hosting**
 - **Backend:** Deployed on **Render** (or your current deployment platform)
 - **Database:** Hosted on **MongoDB Atlas**
 
